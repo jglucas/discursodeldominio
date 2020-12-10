@@ -1,0 +1,98 @@
+create table personas_embarazadas(
+id_cedula integer,
+nombre varchar,
+apellido varchar,
+direccion varchar,
+telefono integer,
+fecha_de_registro character varying,
+doctor_especialista varchar,
+primary key	(id_cedula)
+);
+select * from personas_embarazadas
+
+create table bebe_en_camino(
+id_nombre_bebe character varying,
+fecha_de_ingreso varchar,
+genero varchar,
+vacuna varchar,
+fecha_de_dosis character varying,
+dosis character varying,
+doctor varchar,
+control_visitas character varying,
+primary key(id_nombre_bebe)
+);
+select * from bebe_en_camino
+
+create table vistas_al_centro(
+id_cod_de_paciente character varying,
+nombre_pacientes varchar,
+visita_1 varchar,
+visita_2 varchar,
+visita_3 varchar,
+visita_4 varchar,
+visita_5 varchar,
+primary key (id_cod_de_paciente)
+);
+
+create table medicamentos(
+id_numero integer,
+difteria varchar,
+tetano varchar,
+pertussis varchar,
+hib varchar,
+hepatitis_b varchar,
+poliomielitis varchar,
+primary key(id_numero)
+);
+select * from medicamentos
+
+insert into personas_embarazadas values
+(1306945628,'selena','zambrano','calle16av29',0985741259,'3demarzode2020','dr.samuel'),
+(1316689742,'maria','vera','calle12av18',095622214,'5deenerode2020','dr.enrique'),
+(1305520111,'belen','sanchez','calle11av10',0856412433,'7defebrerode2020','dr.miguel'),
+(1318927888,'belinda','rodriguez','calle24av12',0956622571,'2dejuniode2020','dr.jose'),
+(1305522162,'roxana','velez','calle26av8',0936555987,'20deagostode2020','dr.jimmy');
+
+insert into bebe_en_camino values
+('samuel','11demarzode2020','masculino','hepatitis_b','23dejuliode2020','1dosis','dr.jimmy','12deseptiembrede2020'),
+('issac','10deenerode2020','masculino','hib','24deenerode2020','1dosis','dr.enrique','15dejuliode2020'),
+('liam','14defebrerode2020','masculino','pertussis','22defebrerode2020','1dosis','dr.jose','16deagostode2020'),
+('camila','15dejuniode2020','femenino','tetano','25dejuniode2020','1dosis','dr.miguel','14dediciembrede2020'),
+('salome','16deagostode2020','femenino','difteria','30deagostode2020','1dosis','dr.samuel','14defebrerode2021');
+
+insert into medicamentos values
+(1,'5dosisvacunas','6dosisvacunas','3dosisvacunas','2dosisvacunas','4dosisvacunas','10dosisvacunas'),
+(2,'50dosisvacunas','60dosisvacunas','4dosisvacunas','1dosisvacunas','23dosisvacunas','15dosisvacunas'),
+(3,'9dosisvacunas','70dosisvacunas','8dosisvacunas','24dosisvacunas','25dosisvacunas','18dosisvacunas'),
+(4,'80dosisvacunas','40dosisvacunas','27dosisvacunas','25dosisvacunas','11dosisvacunas','12dosisvacunas'),
+(5,'90dosisvacunas','30dosisvacunas','28dosisvacunas','26dosisvacunas','20dosisvacunas','17dosisvacunas');
+
+insert into visitas_al_centro values
+('m489z','selena','23_de_diciembre_de_2020','3_de_julio_de_2020','21_de_agosto_de_2020','9_de_septiembre_de_2020','5_de_octubre_de_2020'),
+('x569a','maria','22_de_marzo_de_2020','5_de_junio_de_2020','20_de_septiembre_de_2020','6_de_octubre_de_2020','3_de_mayo_de_2020'),
+('b751g','belen','25_de_junio_de_2020','8_de_marzo_de_2020','19_de_febrero_de_2020','8_de_febrero_de_2020','9_de_agosto_de_2020'),
+('r165e','belinda','2_de_julio_de_2020','7_de_abril_de_2020','21_de_abril_de_2020','5_de_septiembre_de_2020','20_de_junio_de_2020'),
+('w395y','roxana','19_de_septiembre_de_2020','10_de_julio_de_2020','21_de_julio_de_2020','1_de_mayo_de_2020','1_de_septiembre_de_2020');
+
+select (id_nombre_bebe,control_visitas)as visitas_al_centro from bebe_en_camino
+select (id_nombre_bebe,dosis)as vacunas_bebes from bebe_en_camino
+select (doctor,dosis)as vacunas_doctor from bebe_en_camino
+select count (*)
+from medicamentos;
+
+select (nombre,control_visitas)as visitas_al_centro from bebe_en_camino,personas_embarazadas
+select (nombre_pacientes,visita_1,visita_2,visita_3,visita_4,visita_5) as visitas_alcentro_pacientes from visitas_al_centro
+select (nombre_pacientes) as visitas_alcentro_pacientes,visita_1,visita_2,visita_3,visita_4,visita_5 from visitas_al_centro
+select count (*)
+from medicamentos;
+
+CONSULTAS
+
+select (nombre_pacientes) as nombre,visita_1,visita_2,visita_3,visita_4,visita_5 from visitas_al_centro
+
+select (id_nombre_bebe)as nombre,vacuna,dosis  from bebe_en_camino
+
+select (doctor)as doctor,dosis from bebe_en_camino
+
+select count (*)
+from medicamentos;
