@@ -1,2 +1,0 @@
-# discursodeldominio
-modelo relacional
